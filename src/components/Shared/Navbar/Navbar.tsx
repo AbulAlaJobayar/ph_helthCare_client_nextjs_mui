@@ -1,10 +1,18 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+"use client";
+import AuthButton from "@/components/UI/AuthButton/AuthButton";
+import { Box, Container, Stack, Typography } from "@mui/material";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-
 const Navbar = () => {
+  const AuthButton = dynamic(() => import("@/components/UI/AuthButton/AuthButton"), { ssr: false })
   return (
     <Container>
-      <Stack py={2} direction="row" justifyContent="space-between" alignContent='center'>
+      <Stack
+        py={2}
+        direction="row"
+        justifyContent="space-between"
+        alignContent="center"
+      >
         <Typography variant="h4" component={Link} href="/" fontWeight={600}>
           P
           <Box component="span" color="primary.main">
@@ -34,9 +42,8 @@ const Navbar = () => {
             NGOs
           </Typography>
         </Stack>
-        <Button component={Link} href="/login">
-          Login
-        </Button>
+
+        <AuthButton />
       </Stack>
     </Container>
   );
